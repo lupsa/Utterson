@@ -1,0 +1,93 @@
+{{- with .Site.Params.staticman.api -}}
+  <section class="staticman">
+    {{- $slug := replace $.RelPermalink "/" "" -}}
+  
+    {{- if $.Site.Data.comments -}}
+      {{- $comments := index $.Site.Data.comments $slug -}}
+      {{- if $comments -}}
+          {{- if gt (len $comments) 1 -}}
+            <h3 class="staticman-title">{{- len $comments }} comments</h3>
+          {{- else -}}
+            <h3 class="staticman-title">{{- len $comments }} comment</h3>
+          {{- end -}}
+        {{- end -}}
+  
+      {{- $hasComments := 0 -}}
+      {{- range $comments -}}
+        {{- if not .reply_to -}}
+          {{- $parentId := ._id -}}
+          {{- $parentName := .name -}}
+          {{- $hasReplies := 0 -}}
+          {{- $hasComments = add $hasComments 1 -}}
+          <article class="staticman-comment" id="comment-{{ ._id | md5 }}">
+            <div class="comment-meta">
+                <span class="comment-meta-nr">#{{ $hasComments }}</span>
+                <img src="https://www.gravatar.com/avatar/{{ .email }}?s=128&d=mm&r=x">
+                <div class="comment-metadata">
+                  <span class="comment-meta-name {{ if eq .email ($.Site.Params.email | md5) }}comment-meta-author{{ end }}">{{ if .website }}<a href="{{ .website }}" rel="external nofollow ugc">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}</span>
+                  <a class="comment-meta-date" href="#comment-{{ ._id | md5 }}" title="Permalink to this comment">
+                    <time datetime="{{ .date }}">{{ .date | time.Format ":date_long" }} at {{ .date | time.Format ":time_short"}}</time>
+                  </a>
+                </div>
+            </div>
+              <p class="comment-content">{{ .comment | markdownify }}</p>
+
+            {{- range $comments -}}
+              {{- if eq .reply_to $parentId -}}
+                {{- $hasReplies = add $hasReplies 1 -}}
+              {{- end -}}
+            {{- end -}}
+            
+            <!-- nested comments -->
+              {{- range $comments -}}
+                {{- if eq .reply_to $parentId -}}
+                  {{- $hasComments = add $hasComments 1 -}}
+                  <div class="comment-reply" id="comment-{{ ._id | md5 }}">
+                    <div class="comment-meta">
+                        <img src="https://www.gravatar.com/avatar/{{ .email }}?s=128&d=mm&r=x">
+                        <div class="comment-metadata">
+                          <span class="comment-meta-name {{ if eq .email ($.Site.Params.email | md5) }}comment-meta-author{{ end }}">{{ if .website }}<a href="{{ .website }}" rel="external nofollow ugc">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}</span>
+                          <a class="comment-meta-date" href="#comment-{{ ._id | md5 }}" title="Permalink to this comment">
+                            <time datetime="{{ .date }}">{{ .date | time.Format ":date_long" }} at {{ .date | time.Format ":time_short"}}</time>
+                          </a>
+                        </div>
+                        <span class="comment-meta-nr">#{{ $hasComments }}</span>
+                    </div>
+                    <p>{{ .comment | markdownify }}</p>
+                  </div>
+                {{ end }}
+              {{ end }}
+
+          <a class="comment-reply-button" id="reply-{{ ._id | md5}}" onclick="replyTo('{{ ._id }}', '{{ .name }}', '{{ ._id | md5}}')" >Reply</a>
+        </article>
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  
+  <div class="comment-form" id="comment-form">
+    <a id="resetButton" onclick="reset('')" hidden>Cancel reply</a>
+    <form id="staticman-form" method="post" action="{{ $.Site.Params.staticman.api }}" onsubmit="return checkForm(this);">
+      <h3 id="comment-form-header">Your thoughts?</h3>
+      <span>Your email address will not be published. Required fields are marked <strong>*</strong></span>
+      <fieldset>
+          <input type="hidden" name="options[redirect]" value="{{ $.RelPermalink | absURL }}#comment-thankyou">
+          <input type="hidden" name="options[slug]" value="{{ replace $.RelPermalink "/" "" }}">
+          <input type="hidden" name="fields[reply_to]" value="">
+          <input name="fields[name]" id="yourname" type="text" placeholder="Name *" required/>
+          <input name="fields[email]" id="youremail" type="email" placeholder="Email *" required/>
+          <input name="fields[website]" id="website" type="url" placeholder="Website"/>
+          <textarea name="fields[comment]" id="yourcomment" placeholder="What are you thinking? (markdown is accepted) *" required></textarea>
+          <button id="submitButton">Submit</button>
+          <output id="warningComment"></output>
+      </fieldset>
+    </form>
+  </div>
+  <aside aria-label="note" class="message" id="comment-thankyou" style="display: none; text-align: center;">
+      Thank you for your comment, it will be displayed once it has been approved!
+  </aside>
+  <script type="application/javascript">
+    {{ partial "staticman-js.js" . | safeJS }}
+  </script>
+  <noscript>For replies, enable Javascript!</noscript>
+</section>
+{{ end }}
