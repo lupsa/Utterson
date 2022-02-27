@@ -21,7 +21,7 @@
   position: relative;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-content: center;
   justify-content: flex-start;
   align-items: flex-start;
@@ -167,7 +167,6 @@
 
   input:focus,
   textarea:focus {
-    outline: none;
     background-color: var(--fieldset-hover-bg);
   }
 
