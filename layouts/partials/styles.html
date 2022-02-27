@@ -1,0 +1,8 @@
+{{ $inter_fonts := resources.Get "css/inter.css"}}
+{{ $sass := resources.Get "sass/styles.scss" -}}
+{{- $options := (dict "targetPath" "style.css" "outputStyle" "compressed") -}}
+{{- $main := $sass | resources.ToCSS $options -}}
+{{- $style := slice $inter_fonts $main | resources.Concat "mkozaq.css" | resources.Minify -}}
+<style>
+  {{ $style.Content | safeCSS }}
+</style>

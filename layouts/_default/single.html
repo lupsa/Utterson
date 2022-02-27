@@ -1,0 +1,24 @@
+{{ define "main" }}
+  {{ if eq .Type "page" }}
+    <article class="page">
+      <h1 class="page-title">{{ .Title }}</h1>
+      {{ .Content }}
+    </article>
+  {{ else }}
+    <article class="post">
+      <h1 class="post-title">{{ .Title }}</h1>
+      <time datetime="{{ .Date.Format `2006-01-02T15:04:05Z07:00` | safeHTML }}" class="post-date">{{ .Date | time.Format ":date_full" }}</time>
+      {{ .Content }}
+    </article>
+    <div class="post-footer">
+      <div class="post-footer-tags">
+        {{ range (.GetTerms "tags") }}
+          <a href="{{ .Permalink }}">#{{ .LinkTitle }}</a>
+        {{ end }}
+      </div>
+      {{ partial "share.html" . }}
+    </div>
+    {{- partial "related.html" . }}
+    {{- partial "staticman.html" . }}
+  {{- end -}}
+{{- end -}}

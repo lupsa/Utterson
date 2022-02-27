@@ -1,0 +1,22 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett">
+<meta name="referrer" content="no-referrer-when-downgrade">
+<title>
+  {{- if .IsHome -}}
+    {{- .Site.Title }} &middot; {{ .Site.Params.description -}}
+  {{- else -}}
+    {{- block "title" . }} {{ with .Title }} {{ . }} &middot; {{ end }} {{ .Site.Title }} {{ end -}}
+  {{- end -}}
+</title>
+
+{{- partialCached "styles.html" . -}}
+
+{{ with .Site.Params.favicon -}}
+  <link rel="shortcut icon" href="{{ . | absURL }}" />
+{{- end }}
+{{ with .OutputFormats.Get "rss" -}}
+  {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+{{- end }}
+{{- partial "seo-tags.html" . }}
+{{- partial "seo-microdata.html" . -}}

@@ -1,0 +1,41 @@
+.archive {
+
+  ul{
+    margin-bottom: var(--spacer-3);
+    padding-left: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 0.5rem;
+
+    &:hover {
+      color: var(--link-hover-color);
+    }
+
+    time {
+      flex: 0 0 7rem;
+      opacity: .8;
+    }
+  }
+}
+
+.archive-tags {
+  font-size: .9rem;
+
+  a{
+    text-decoration: none;
+  }
+}
+
+.archive-term {
+  ul {
+    margin-top: var(--spacer-3);
+  }
+}

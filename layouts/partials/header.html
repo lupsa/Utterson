@@ -1,0 +1,13 @@
+<h2 class="masthead-title">
+  <a href="{{ .Site.BaseURL }}" title="Home">{{ .Site.Title }}</a>
+  <small>{{ .Site.Params.description}}</small>
+</h2>
+<nav class="masthead-nav">
+  <a href="{{ "/" | relURL }}">Home</a>
+  {{- range .Site.Menus.main }}
+    <a href="{{ .URL }}">{{ .Name }}</a>
+  {{- end -}}
+  {{- with .Site.GetPage "/blog" }}
+    <a href="{{ "/blog" | relURL }}">Blog</a>
+  {{- end -}}
+</nav>
