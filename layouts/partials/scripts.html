@@ -1,0 +1,9 @@
+{{- $quicklink := resources.GetRemote "https://unpkg.com/quicklink" -}}
+{{- $share_window := resources.Get "js/share-window.js" -}}
+{{- $js := slice $quicklink $share_window | resources.Concat "mkozaq.js" | resources.Minify | resources.Fingerprint "sha512" -}}
+<script src="{{ $js.Permalink }}" integrity="{{ $js.Data.Integrity }}" async></script>
+<script type="text/javascript">
+  window.addEventListener('load', () => {
+    quicklink.listen();
+  });
+</script>
