@@ -1,0 +1,30 @@
+// Share buttons
+.post-footer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+
+  svg {
+    width: 2rem;
+    background-color: var(--gray-100);
+    border-radius: var(--border-radius);
+
+    &:hover {
+      fill: var(--red);
+    }
+  }
+  .socialshare_twitter {
+    fill: #1DA1F2;
+  }
+
+  .socialshare_facebook {
+    fill: #4267B2;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+}
