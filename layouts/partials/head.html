@@ -9,14 +9,10 @@
     {{- block "title" . }} {{ with .Title }} {{ . }} &middot; {{ end }} {{ .Site.Title }} {{ end -}}
   {{- end -}}
 </title>
-
 {{- partialCached "styles.html" . -}}
-
-{{ with .Site.Params.favicon -}}
-  <link rel="shortcut icon" href="{{ . | absURL }}" />
-{{- end }}
-{{ with .OutputFormats.Get "rss" -}}
-  {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+{{ partialCached "favicon.html" . -}}
+{{ with .OutputFormats.Get "rss" }}
+  {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
 {{- end }}
 {{- partial "seo-tags.html" . }}
 {{- partial "seo-microdata.html" . -}}
