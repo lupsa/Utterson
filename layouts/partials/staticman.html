@@ -86,7 +86,7 @@
       Thank you for your comment, it will be displayed once it has been approved!
   </aside>
   <script type="application/javascript">
-    {{ partial "staticman-js.js" . | safeJS }}
+    {{ partialCached "staticman-js.js" . | safeJS }}
   </script>
   <noscript>For replies, enable Javascript!</noscript>
 </section>

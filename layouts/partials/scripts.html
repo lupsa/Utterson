@@ -4,6 +4,9 @@
 <script src="{{ $js.Permalink }}" integrity="{{ $js.Data.Integrity }}" async></script>
 <script type="text/javascript">
   window.addEventListener('load', () => {
-    quicklink.listen();
+    quicklink.listen({
+      ignores: [uri => uri.includes('#')],
+      timeout: 3000,
+    });
   });
 </script>
