@@ -65,7 +65,7 @@
     {{ end }}
   
   <div class="comment-form" id="comment-form">
-    <a id="resetButton" onclick="reset('')" hidden>Cancel reply</a>
+    <a id="resetButton" onclick="cancelReply('')" hidden>Cancel reply</a>
     <form id="staticman-form" method="post" action="{{ $.Site.Params.staticman.api }}" onsubmit="return checkForm(this);">
       <h3 id="comment-form-header">Your thoughts?</h3>
       <span>Your email address will not be published. Required fields are marked <strong>*</strong></span>

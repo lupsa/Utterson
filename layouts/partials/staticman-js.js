@@ -16,13 +16,13 @@ function replyTo(parent, name, commentID) {
   document.getElementById("resetButton").hidden = false;
 }
 
-function reset(parent) {
+function cancelReply(parent) {
   var a = document.getElementById("comment-thankyou"),
       f = document.getElementById("comment-form"),
       h = document.getElementById("comment-form-header");
 
   h.innerHTML = "Your thoughts?";
-  a.parentNode.insertBefore(f, a.previousSibling);
+  a.parentNode.insertBefore(f, a);
   document.getElementsByName("fields[reply_to]")[0].value=parent;
   document.getElementById("resetButton").hidden = true;
 }
