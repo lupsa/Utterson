@@ -23,7 +23,7 @@
 
   small {
     font-weight: 400;
-    opacity: .4;
+    opacity: .6;
     font-size: 1rem;
   }
 }
@@ -32,7 +32,7 @@
 
   a {
     padding-right: calc(0.8 * var(--spacer));
-    color: var(--body-color);
+    color: var(--heading-color);
     text-decoration: underline;
     font-weight: 500;
 

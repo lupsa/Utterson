@@ -6,7 +6,10 @@
 .message {
   padding: var(--spacer);
   margin-bottom: var(--spacer);
-  color: var(--gray-900);
-  background-color: var(--yellow-100);
+  color: var(--gray-700);
+  background-color: var(--yellow-200);
   border-radius: var(--border-radius);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border-color);
 }

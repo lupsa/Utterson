@@ -28,6 +28,7 @@
 
   img {
     width: 3rem;
+    height: auto;
     margin-right: .5rem;
   }
 }
@@ -51,7 +52,14 @@
 }
 
 .comment-meta-author {
-  color: var(--red);
+  color: var(--red-500);
+}
+
+
+@media (prefers-color-scheme: dark) {
+  .comment-meta-author {
+    color: var(--red-400);
+  }
 }
 
 .comment-meta-date {
@@ -131,7 +139,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    color: var(--red);
+    color: var(--red-500);
     cursor: pointer;
   }
 
@@ -168,6 +176,16 @@
   input:focus,
   textarea:focus {
     background-color: var(--fieldset-hover-bg);
+
+    &::placeholder {
+      color: var(--gray-600);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      &::placeholder {
+        color: var(--gray-300);
+      }
+    }
   }
 
   @media (min-width: 35rem) {
