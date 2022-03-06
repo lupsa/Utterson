@@ -28,23 +28,9 @@ function cancelReply(parent) {
 }
 
 function checkForm(form){
-
-    if(form.yourname.value == ""){
-        form.warningComment.style.display = "block"; 
-        form.warningComment.innerText = "Please type your name";
-        return false;
-    }
-    else if(form.yourcomment.value == ""){
-        form.warningComment.style.display = "block"; 
-        form.warningComment.innerText = "Please type a comment";
-        return false;
-    }
-    else{
-        form.submitButton.disabled = true;
-        form.warningComment.style.display = "none"; 
-        form.warningComment.innerText = "";
-        form.submitButton.innerText = "Sending...";
-        return true;
-    }
-    
+    form.submitButton.disabled = true;
+    form.warningComment.style.display = "none"; 
+    form.warningComment.innerText = "";
+    form.submitButton.innerText = "Sending...";
+    return true;
 }
