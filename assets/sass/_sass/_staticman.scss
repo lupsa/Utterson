@@ -51,15 +51,14 @@
   }
 }
 
-.comment-meta-author {
-  color: var(--red-500);
-}
-
-
-@media (prefers-color-scheme: dark) {
-  .comment-meta-author {
-    color: var(--red-400);
-  }
+.comment-meta-author::after {
+  position: absolute;
+  right: calc(var(--spacer) * 2);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--body-color);
+  opacity: .6;
+  content: "Author";
 }
 
 .comment-meta-date {
