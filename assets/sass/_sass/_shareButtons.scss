@@ -16,14 +16,22 @@
       fill: var(--link-hover-color);
     }
   }
-  .socialshare_twitter {
-    fill: #1DA1F2;
-  }
 
-  .socialshare_facebook {
-    fill: #4267B2;
-  }
+}
 
+.socialshare_twitter {
+  fill: #1DA1F2;
+}
+
+.socialshare_facebook {
+  fill: #4267B2;
+}
+
+.share-buttons {
+
+  a {
+    margin-left: calc(var(--spacer) * .25);
+  }
   a:hover {
     text-decoration: none;
   }
