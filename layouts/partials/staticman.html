@@ -19,13 +19,14 @@
           {{- $parentName := .name -}}
           {{- $hasReplies := 0 -}}
           {{- $hasComments = add $hasComments 1 -}}
-          <article class="staticman-comment" id="comment-{{ ._id | md5 }}">
+	  {{ $hash := (crypto.FNV32a ._id) }}
+          <article class="staticman-comment" id="comment-{{ $hash }}">
             <div class="comment-meta">
                 <span class="comment-meta-nr">#{{ $hasComments }}</span>
                 <img src="https://www.gravatar.com/avatar/{{ .email }}?s=128&d=mm&r=x" srcset="https://www.gravatar.com/avatar/{{ .email }}?s=128&d=mm&r=x" alt="gravatar" height="128" width="128" loading="lazy">
                 <div class="comment-metadata">
                   <span class="comment-meta-name {{ if eq .email ($.Site.Params.email | md5) }}comment-meta-author{{ end }}">{{ if .website }}<a href="{{ .website }}" rel="external nofollow ugc">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}</span>
-                  <a rel="nofollow" class="comment-meta-date" href="#comment-{{ ._id | md5 }}" title="Permalink to this comment">
+                  <a rel="nofollow" class="comment-meta-date" href="#comment-{{ $hash }}" title="Permalink to this comment">
                     <time datetime="{{ .date }}">{{ .date | time.Format ":date_long" }} at {{ .date | time.Format ":time_short"}}</time>
                   </a>
                 </div>
@@ -42,12 +43,14 @@
               {{- range $comments -}}
                 {{- if eq .reply_to $parentId -}}
                   {{- $hasComments = add $hasComments 1 -}}
-                  <div class="comment-reply" id="comment-{{ ._id | md5 }}">
+		  {{ $hash := (crypto.FNV32a ._id) }}
+
+                  <div class="comment-reply" id="comment-{{ $hash }}">
                     <div class="comment-meta">
                         <img src="https://www.gravatar.com/avatar/{{ .email }}?s=128&d=mm&r=x" srcset="https://www.gravatar.com/avatar/{{ .email }}?s=128&d=mm&r=x" alt="gravatar" height="128" width="128" loading="lazy">
                         <div class="comment-metadata">
                           <span class="comment-meta-name {{ if eq .email ($.Site.Params.email | md5) }}comment-meta-author{{ end }}">{{ if .website }}<a href="{{ .website }}" rel="external nofollow ugc">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}</span>
-                          <a rel="nofollow" class="comment-meta-date" href="#comment-{{ ._id | md5 }}" title="Permalink to this comment">
+                          <a rel="nofollow" class="comment-meta-date" href="#comment-{{ $hash }}" title="Permalink to this comment">
                             <time datetime="{{ .date }}">{{ .date | time.Format ":date_long" }} at {{ .date | time.Format ":time_short"}}</time>
                           </a>
                         </div>
@@ -58,7 +61,7 @@
                 {{ end }}
               {{ end }}
 
-          <a rel="nofollow" class="comment-reply-button" id="reply-{{ ._id | md5}}" onclick="replyTo('{{ ._id }}', '{{ .name }}', '{{ ._id | md5}}')" >Reply</a>
+          <a rel="nofollow" class="comment-reply-button" id="reply-{{ $hash }}" onclick="replyTo('{{ ._id }}', '{{ .name }}', '{{ $hash}}')" >Reply</a>
         </article>
         {{ end }}
       {{ end }}
