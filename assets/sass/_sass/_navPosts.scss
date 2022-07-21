@@ -1,0 +1,18 @@
+// CSS for next and previous post on single page
+
+.nav-post {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--spacer-2);
+    padding-bottom: var(--spacer-2);
+    border-bottom: 1px solid var(--border-color);
+
+    .nav-post-child a{
+      color: var(--body-color);
+      font-weight: 400;
+    }
+}
