@@ -1,0 +1,17 @@
+name = "Utterson"
+license = "MIT"
+licenselink = "https://github.com/lupsa/Utterson/blob/main/LICENSE.md"
+description = "An elegant open source and mobile first theme"
+tags = ["blog", "company", "personal", "minimal"]
+features = ["blog", "themes", "staticman"]
+min_version = 0.53
+
+[author]
+    name = "lupsa"
+    homepage = "http://dariuslupsa.ro"
+
+# If Porting existing theme
+[original]
+    author =  "mdo"
+    homepage = "http://markdotto.com/"
+    repo = "https://github.com/poole/poole"
