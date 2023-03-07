@@ -1,0 +1,13 @@
+{{- $quicklink := resources.GetRemote "https://unpkg.com/quicklink" -}}
+{{- $webmention := resources.GetRemote "https://raw.githubusercontent.com/lupsa/webmention.js/main/static/webmention.min.js" -}}
+{{- $share_window := resources.Get "js/share-window.js" -}}
+{{- $js := slice $quicklink $share_window $webmention | resources.Concat "mkozaq.js" | resources.Minify | resources.Fingerprint "sha512" -}}
+<script src="{{ $js.Permalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+<script type="text/javascript">
+  window.addEventListener('load', () => {
+    quicklink.listen({
+      ignores: [uri => uri.includes('#')],
+      timeout: 3000,
+    });
+  });
+</script>

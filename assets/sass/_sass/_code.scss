@@ -14,6 +14,7 @@ code {
 
 p code {
   color: var(--code-color);
+  font-size: 100%;
 }
 
 pre {
@@ -21,10 +22,6 @@ pre {
   margin-top: 0;
   margin-bottom: var(--spacer-3);
   overflow: auto;
-
-  &:focus {
-    outline: none;
-  }
 }
 
 .highlight {

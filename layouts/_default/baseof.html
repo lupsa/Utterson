@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en{{ end }}">
   <head>
     {{- partial "head.html" . }}
   </head>
@@ -15,12 +15,13 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="{{ now.Format `2006-01-02T15:04` | safeHTML}}">{{ now.Format "2006"}}</time>. All rights reserved.
+          &copy;<time datetime="{{ now.Format `2006` | safeHTML}}">{{ now.Format "2006"}}</time>. All rights reserved.
         </small>
       </footer>
     </div>
     {{ if not .Site.IsServer -}}
       {{ template "_internal/google_analytics.html" . }}
     {{- end -}}
+    {{ partialCached "scripts" . }}
   </body>
 </html>

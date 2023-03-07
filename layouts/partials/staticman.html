@@ -19,18 +19,19 @@
           {{- $parentName := .name -}}
           {{- $hasReplies := 0 -}}
           {{- $hasComments = add $hasComments 1 -}}
-          <article class="staticman-comment" id="comment-{{ ._id | md5 }}">
+	  {{ $hash := (crypto.FNV32a ._id) }}
+          <article class="staticman-comment" id="comment-{{ $hash }}">
             <div class="comment-meta">
                 <span class="comment-meta-nr">#{{ $hasComments }}</span>
-                <img src="https://www.gravatar.com/avatar/{{ .email }}?s=128&d=mm&r=x">
+                <img src="https://www.gravatar.com/avatar/{{ .email }}?s=128&d=mm&r=x" srcset="https://www.gravatar.com/avatar/{{ .email }}?s=128&d=mm&r=x" alt="gravatar" height="128" width="128" loading="lazy">
                 <div class="comment-metadata">
                   <span class="comment-meta-name {{ if eq .email ($.Site.Params.email | md5) }}comment-meta-author{{ end }}">{{ if .website }}<a href="{{ .website }}" rel="external nofollow ugc">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}</span>
-                  <a class="comment-meta-date" href="#comment-{{ ._id | md5 }}" title="Permalink to this comment">
+                  <a rel="nofollow" class="comment-meta-date" href="#comment-{{ $hash }}" title="Permalink to this comment">
                     <time datetime="{{ .date }}">{{ .date | time.Format ":date_long" }} at {{ .date | time.Format ":time_short"}}</time>
                   </a>
                 </div>
             </div>
-              <p class="comment-content">{{ .comment | markdownify }}</p>
+              <p class="comment-content p-comment">{{ .comment | markdownify }}</p>
 
             {{- range $comments -}}
               {{- if eq .reply_to $parentId -}}
@@ -42,30 +43,32 @@
               {{- range $comments -}}
                 {{- if eq .reply_to $parentId -}}
                   {{- $hasComments = add $hasComments 1 -}}
-                  <div class="comment-reply" id="comment-{{ ._id | md5 }}">
+		  {{ $hash := (crypto.FNV32a ._id) }}
+
+                  <div class="comment-reply" id="comment-{{ $hash }}">
                     <div class="comment-meta">
-                        <img src="https://www.gravatar.com/avatar/{{ .email }}?s=128&d=mm&r=x">
+                        <img src="https://www.gravatar.com/avatar/{{ .email }}?s=128&d=mm&r=x" srcset="https://www.gravatar.com/avatar/{{ .email }}?s=128&d=mm&r=x" alt="gravatar" height="128" width="128" loading="lazy">
                         <div class="comment-metadata">
                           <span class="comment-meta-name {{ if eq .email ($.Site.Params.email | md5) }}comment-meta-author{{ end }}">{{ if .website }}<a href="{{ .website }}" rel="external nofollow ugc">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}</span>
-                          <a class="comment-meta-date" href="#comment-{{ ._id | md5 }}" title="Permalink to this comment">
+                          <a rel="nofollow" class="comment-meta-date" href="#comment-{{ $hash }}" title="Permalink to this comment">
                             <time datetime="{{ .date }}">{{ .date | time.Format ":date_long" }} at {{ .date | time.Format ":time_short"}}</time>
                           </a>
                         </div>
                         <span class="comment-meta-nr">#{{ $hasComments }}</span>
                     </div>
-                    <p>{{ .comment | markdownify }}</p>
+                    <p class="p-comment">{{ .comment | markdownify }}</p>
                   </div>
                 {{ end }}
               {{ end }}
 
-          <a class="comment-reply-button" id="reply-{{ ._id | md5}}" onclick="replyTo('{{ ._id }}', '{{ .name }}', '{{ ._id | md5}}')" >Reply</a>
+          <a rel="nofollow" class="comment-reply-button" id="reply-{{ $hash }}" onclick="replyTo('{{ ._id }}', '{{ .name }}', '{{ $hash}}')" >Reply</a>
         </article>
         {{ end }}
       {{ end }}
     {{ end }}
   
   <div class="comment-form" id="comment-form">
-    <a id="resetButton" onclick="reset('')" hidden>Cancel reply</a>
+    <a rel="nofollow" id="resetButton" onclick="cancelReply('')" hidden>Cancel reply</a>
     <form id="staticman-form" method="post" action="{{ $.Site.Params.staticman.api }}" onsubmit="return checkForm(this);">
       <h3 id="comment-form-header">Your thoughts?</h3>
       <span>Your email address will not be published. Required fields are marked <strong>*</strong></span>
@@ -76,8 +79,8 @@
           <input name="fields[name]" id="yourname" type="text" placeholder="Name *" required/>
           <input name="fields[email]" id="youremail" type="email" placeholder="Email *" required/>
           <input name="fields[website]" id="website" type="url" placeholder="Website"/>
-          <textarea name="fields[comment]" id="yourcomment" placeholder="What are you thinking? (markdown is accepted) *" required></textarea>
-          <button id="submitButton">Submit</button>
+          <textarea name="fields[comment]" id="yourcomment" placeholder="What are your thoughts? (markdown is accepted) *" required></textarea>
+          <button id="submitButton">Comment</button>
           <output id="warningComment"></output>
       </fieldset>
     </form>
@@ -86,8 +89,9 @@
       Thank you for your comment, it will be displayed once it has been approved!
   </aside>
   <script type="application/javascript">
-    {{ partial "staticman-js.js" . | safeJS }}
+    {{ partialCached "staticman-js.js" . | safeJS }}
   </script>
   <noscript>For replies, enable Javascript!</noscript>
 </section>
 {{ end }}
+<div id="webmentions"></div>

@@ -15,7 +15,7 @@
             <ul>
             {{- range (where .Pages "Type" $type) -}}
               {{- if (ne .Params.hidden true) }}
-                <li>
+                <li class="archive-item">
                   <time>{{- .Date | time.Format ":date_medium" -}}</time>
                   <a href="{{- .RelPermalink -}}">{{- .Title -}}</a>
                 </li>
@@ -29,13 +29,16 @@
       <div class="archive-term">
         <h2>Filtering for #{{ .Title }}</h2>
         <small>
-          <a href="{{ "/blog" | relURL }}">Remove filter</a>
+          <a href="{{ "/blog" | relURL }}">Blog Archive</a> | <a href="{{ "/microblog" | relURL }}">Microblog Archive</a>
         </small>
         <ul>
           {{- range .Pages }}
               <li>
                 <time>{{- .Date | time.Format ":date_medium" -}}</time>
-                <a href="{{- .RelPermalink -}}">{{- .Title -}}</a>
+                {{ if .Title }} <a href="{{- .RelPermalink -}}">{{- .Title | plainify | safeHTML -}}</a>
+                {{- else }}
+                <a href="{{- .RelPermalink -}}"> {{ .Summary | plainify | safeHTML | truncate 65}}</a> 
+                {{- end}}
               </li>
           {{- end }}
         </ul>

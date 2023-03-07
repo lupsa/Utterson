@@ -3,6 +3,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  margin-top: var(--spacer-2);
 }
 
 .staticman-title {
@@ -21,13 +22,14 @@
   position: relative;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-content: center;
   justify-content: flex-start;
   align-items: flex-start;
 
   img {
     width: 3rem;
+    height: auto;
     margin-right: .5rem;
   }
 }
@@ -50,8 +52,14 @@
   }
 }
 
-.comment-meta-author {
-  color: var(--red);
+.comment-meta-author::after {
+  position: absolute;
+  right: calc(var(--spacer) * 2);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--body-color);
+  opacity: .8;
+  content: "Author";
 }
 
 .comment-meta-date {
@@ -70,7 +78,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  opacity: .4;
+  opacity: .8;
 }
 
 .comment-content {
@@ -131,7 +139,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    color: var(--red);
+    color: var(--red-500);
     cursor: pointer;
   }
 
@@ -163,12 +171,22 @@
     border-style: solid;
     border-color: var(--border-color);
     border-radius: var(--border-radius);
+    outline: none;
   }
 
   input:focus,
   textarea:focus {
-    outline: none;
     background-color: var(--fieldset-hover-bg);
+
+    &::placeholder {
+      color: var(--gray-600);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      &::placeholder {
+        color: var(--gray-300);
+      }
+    }
   }
 
   @media (min-width: 35rem) {

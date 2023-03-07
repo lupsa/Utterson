@@ -4,6 +4,11 @@
 
 * {
   box-sizing: border-box;
+  outline: 0;
+}
+
+html {
+  text-rendering: optimizelegibility;
 }
 
 body {
@@ -13,6 +18,7 @@ body {
   line-height: var(--body-line-height);
   color: var(--body-color);
   background-color: var(--body-bg);
+  overflow-wrap: break-word;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }

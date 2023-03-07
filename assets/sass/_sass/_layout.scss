@@ -11,6 +11,12 @@
   margin-right: auto;
 }
 
+@media only screen and (max-width: 17rem) {
+  .container {
+    width: 17rem;
+  }
+}
+
 footer {
   margin-top: var(--spacer-3);
   margin-bottom: var(--spacer-3);

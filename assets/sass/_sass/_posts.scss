@@ -32,82 +32,20 @@
 }
 
 // Meta data line below post title
-.post-date {
+.post-meta {
   display: block;
   margin-top: -.5rem;
   margin-bottom: var(--spacer);
-  color: var(--gray-600);
-  font-size: .92rem;
-  font-weight: 300;
-}
+  opacity: .8;
+  font-size: .95rem;
+  font-weight: 400;
 
-
-// Related posts
-.related {
-  padding-top: var(--spacer-2);
-  padding-bottom: var(--spacer-2);
-  margin-bottom: var(--spacer-2);
-  border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
-}
-
-.related-posts,
-.latest-posts {
-  list-style: none;
-  padding-left: 0;
-
-  li {
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: .5rem;
-
-    &:hover {
-      color: var(--link-hover-color);
-    }
-
-    time {
-      opacity: .8;
-      text-align: right;
-    }
-
-    a {
-      width: 70%;
-      flex-grow: 1;
-      margin-right: .5rem;
-    }
-  }
-}
-
-// share buttons
-.post-footer {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: space-between;
-  align-items: center;
-
-  svg {
-    width: 2rem;
-    background-color: var(--gray-000);
-    border-radius: var(--border-radius);
-
-    &:hover {
-      fill: var(--red);
-    }
-  }
-  .socialshare_twitter {
-    fill: #1DA1F2;
+  a {
+    color: var(--body-font);
   }
 
-  .socialshare_facebook {
-    fill: #4267B2;
-  }
-
-  a:hover {
+  a:hover, a:focus {
+    color: var(--link-hover-color);
     text-decoration: none;
   }
 }

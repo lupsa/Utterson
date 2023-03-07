@@ -1,0 +1,30 @@
+#webmentions {
+  width: 100%;
+  margin: 0;
+  position: relative;
+
+  .comments {
+
+    li {
+      padding-top: .5rem;
+      padding-bottom: .5rem;
+      .text { }
+      .name { }
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: var(--spacer-2);
+  }
+
+  a.reaction {
+    img {
+      float: left;
+      max-width: 3rem;
+      margin-right: .5rem;
+    }
+    sub { }
+  }
+}

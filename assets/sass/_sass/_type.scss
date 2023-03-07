@@ -68,16 +68,24 @@ abbr {
 blockquote {
   padding: .5rem 1rem;
   margin: .8rem 0;
+  background-color: var(--gray-100);
   color: var(--gray-500);
   border-left: .25rem solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
 
   p:last-child {
     margin-bottom: 0;
   }
 
-  @media (min-width: 30em) {
-    padding-right: 5rem;
-    padding-left: 1.25rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  blockquote {
+    background-color: rgba(255,255,255,0.1);
+    color: var(--gray-300);
   }
 }
 
