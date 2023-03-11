@@ -3,23 +3,17 @@
 <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett">
 <meta name="referrer" content="no-referrer-when-downgrade">
 <title>
-  {{- if .IsHome -}}
+    {{- if .IsHome -}}
     {{- .Site.Title }} &middot; {{ .Site.Params.description -}}
-  {{- else -}}
+    {{- else -}}
     {{- block "title" . }} {{ with .Title }} {{ . }} &middot; {{ end }} {{ .Site.Title }} {{ end -}}
-  {{- end -}}
+    {{- end -}}
 </title>
-<!-- IndieWeb -->
-<link rel="authorization_endpoint" href="https://indieauth.com/auth">
-<link rel="token_endpoint" href="https://tokens.indieauth.com/token">
-<link rel="micropub" href="https://mjwwotflsf.execute-api.eu-north-1.amazonaws.com/Prod/">
-<link rel="webmention" href="https://webmention.io/mkozaq.com/webmention">
-<link rel="pingback" href="https://webmention.io/mkozaq.com/xmlrpc">
-<link rel="me" href="https://github.com/d-mkozaq">
 {{- partialCached "styles.html" . -}}
 {{ partialCached "favicon.html" . -}}
 {{ with .OutputFormats.Get "rss" }}
-  {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+{{ printf `
+<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
 {{- end }}
 {{- partial "seo-tags.html" . }}
 {{- partial "seo-microdata.html" . -}}
