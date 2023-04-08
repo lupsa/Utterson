@@ -1,0 +1,9 @@
+<ul class="latest-posts">
+  {{- range ( where site.RegularPages "Section" "blog" | first $.Params.count ) }}
+    <li>
+      <a href="{{ .RelPermalink }}">{{ .Title | plainify | safeHTML }}</a>
+        <hr class="hr-list">
+      <time datetime="{{ .Date.Format `2006-01-02T15:04:05Z07:00` | safeHTML }}">{{ .Date | time.Format ":date_short" }}</time>
+    </li>
+  {{ end }}
+</ul>

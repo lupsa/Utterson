@@ -10,17 +10,26 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    align-content: center;
     justify-content: flex-start;
-    align-items: center;
+    align-items: baseline;
     margin-bottom: var(--list-bottom-margin);
 
     &:hover {
       color: var(--link-hover-color);
     }
 
+    .hr-list {
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-right: .5rem;
+        margin-left: .5rem;
+        height: 1px;
+        border: 0;
+        border-bottom: 1px dotted #ccc;
+        flex: 1 0 1rem;
+    }
+
     time {
-      flex: 0 0 7rem;
       opacity: .8;
     }
   }

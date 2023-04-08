@@ -6,7 +6,6 @@
 <meta name="googlebot" content="index,follow,snippet,archive">
 <!-- Open Graph / Facebook -->
 {{ template "_internal/opengraph.html" . -}}
-
 <!-- Twitter -->
 {{- template "_internal/twitter_cards.html" . -}}
 <meta name="twitter:text:title" content="{{ if .IsHome}}{{ .Title}}, {{ .Site.Params.tagline}}{{ else}}{{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end}}">

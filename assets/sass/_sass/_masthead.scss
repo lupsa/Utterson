@@ -4,9 +4,10 @@
 
 .masthead {
   display: flex;
-  align-content: center;
+  align-content: baseline;
   justify-content: space-between;
   flex-wrap: wrap;
+  flex-direction: column;
   padding-top: var(--spacer);
   padding-bottom: var(--spacer);
   margin-top: var(--spacer);

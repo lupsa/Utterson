@@ -1,15 +1,19 @@
-// CSS for next and previous post on single page
+// Navigation for posts
 
 .nav-post {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    align-content: center;
+    align-content: baseline;
     justify-content: space-between;
     align-items: center;
     padding-top: var(--spacer);
     padding-bottom: var(--spacer);
     border-bottom: 1px solid var(--border-color); 
+
+    .nav-post-child {
+        max-width: 49%;
+    }
 
     .nav-post-child a{
       color: var(--body-color);

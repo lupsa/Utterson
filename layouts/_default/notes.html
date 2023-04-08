@@ -1,0 +1,12 @@
+{{ define "main" }}
+<div class="archive micro">
+    {{ range where site.RegularPages "Type" "note" -}}
+    <div class="micro-content">
+        {{ .Content }}
+        <span class="micro-meta">
+            <a class="u-url" href="{{ .Permalink }}"><time class="dt-published post-date" datetime="{{ .Date.Format `2006-01-02T15:04:05Z07:00` | safeHTML }}">{{ .Date | time.Format ":date_full" }}</time></a>
+        </span>
+    </div>
+    {{ end }}
+</div>
+{{ end }}
