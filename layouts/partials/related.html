@@ -2,12 +2,16 @@
 {{ $related := .Site.RegularPages.Related . | first .Site.Params.related_posts_count }}
 {{ with $related }}
   <section class="related">
-    <h3>Related posts</h3>
+      <h3>{{ i18n "related_posts_title" }}</h3>
     <ul class="related-posts">
       {{ range . }}
         <li>
-          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-          <time datetime="{{ .Date.Format `2006-01-02T15:04:05Z07:00` | safeHTML }}">{{ .Date | time.Format ":date_medium" }}</time>
+			{{ if .Title }} <a href="{{- .RelPermalink -}}">{{- .Title | plainify | safeHTML -}}</a>
+			{{- else }}
+			<a href="{{- .RelPermalink -}}"> {{ .Summary | plainify | safeHTML | truncate 65}}</a> 
+			{{- end}}
+			<hr class="hr-list">
+			<time datetime="{{ .Date.Format `2006-01-02T15:04:05Z07:00` | safeHTML }}">{{ .Date | time.Format ":date_short" }}</time>
         </li>
       {{ end }}
     </ul>

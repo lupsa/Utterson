@@ -16,6 +16,10 @@ body {
   font-family: var(--body-font);
   font-size: var(--body-font-size);
   line-height: var(--body-line-height);
+  font-weight: 425;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   color: var(--body-color);
   background-color: var(--body-bg);
   overflow-wrap: break-word;

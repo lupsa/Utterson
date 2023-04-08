@@ -99,7 +99,7 @@
   --pink-900: #6d224f;
 
   --body-font: "Inter var", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --body-font-size: 17px;
+  --body-font-size: 18px;
   --body-line-height: 1.5;
   --body-color: var(--gray-700);
   --body-bg: #fafafa;
@@ -125,7 +125,7 @@
   --spacer-2: calc(var(--spacer) * 1.5);
   --spacer-3: calc(var(--spacer) * 3);
 
-  --list-bottom-margin: .3rem;
+  --list-bottom-margin: .5rem;
 }
 
 @media (prefers-color-scheme: dark) {

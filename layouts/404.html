@@ -1,7 +1,7 @@
 {{ define "title" }}404{{ end }}
 {{- define "main" -}}
 <div class="page">
-  <h1 class="page-title">404: Page not found</h1>
-  <p class="lead">Sorry, we've misplaced that URL or it's pointing to something that doesn't exist. <a href="{{ .Site.BaseURL }}">Head back home</a> to try finding it again.</p>
+    <h1 class="page-title">{{ i18n "404_title" }}</h1>
+    <p class="lead">{{ i18n "404_content" | markdownify}}</p>
 </div>
 {{ end }}

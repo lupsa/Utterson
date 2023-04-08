@@ -7,3 +7,4 @@
   [[module.imports.mounts]]
     source = "Inter (web)/Inter-italic.var.woff2"
     target = "static/fonts/Inter/Inter-italic.var.woff2"
+

@@ -1,0 +1,9 @@
+<ul class="latest-posts">
+  {{- range ( where site.RegularPages "Type" "note" | first $.Params.count ) }}
+    <li>
+      <a href="{{ .RelPermalink }}">{{ .Summary | plainify | safeHTML | truncate 65}}</a>
+        <hr class="hr-list">
+      <time datetime="{{ .Date.Format `2006-01-02T15:04:05Z07:00` | safeHTML }}">{{ .Date | time.Format ":date_short" }}</time>
+    </li>
+  {{ end }}
+</ul>

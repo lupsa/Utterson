@@ -1,0 +1,14 @@
+# layouts/partials/related.html
+[related_posts_title]
+  other = "Articole asemănătoare"
+
+# layouts/_default/baseof.html
+[rights_notice]
+  other = "Toate drepturile rezervate"
+
+# layouts/404.html
+[404_title]
+  other = "404: Pagină negăsită"
+[404_content]
+  other = "Ne pare rău, această pagină nu mai există sau a fost mutată. [Mergi înapoi acasă](/) pentru a încerca să o cauți din nou."
+

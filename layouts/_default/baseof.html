@@ -1,27 +1,27 @@
 <!doctype html>
 <html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en{{ end }}">
-  <head>
-    {{- partial "head.html" . }}
-  </head>
-  <body>
-    <div class="container content">
-      <header class="masthead">
-        {{ partialCached "header.html" . }}
-      </header>
+    <head>
+        {{- partial "head.html" . }}
+    </head>
+    <body>
+        <div class="container content">
+        <header class="masthead">
+            {{ partialCached "header.html" . }}
+        </header>
 
-      <main>
-        {{- block "main" . }}{{- end }}
-      </main>
+        <main>
+            {{- block "main" . }}{{- end }}
+        </main>
 
-      <footer class="footer">
-        <small>
-          &copy;<time datetime="{{ now.Format `2006` | safeHTML}}">{{ now.Format "2006"}}</time>. All rights reserved.
-        </small>
-      </footer>
-    </div>
-    {{ if not .Site.IsServer -}}
-      {{ template "_internal/google_analytics.html" . }}
-    {{- end -}}
-    {{ partialCached "scripts" . }}
-  </body>
+        <footer class="footer">
+            <small>
+                &copy;<time datetime="{{ now.Format `2006` | safeHTML}}">{{ now.Format "2006"}}</time>. {{ i18n "rights_notice" }}
+            </small>
+        </footer>
+        </div>
+        {{ if not .Site.IsServer -}}
+        {{ template "_internal/google_analytics.html" . }}
+        {{- end -}}
+        {{ partialCached "scripts" . }}
+    </body>
 </html>

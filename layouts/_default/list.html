@@ -1,6 +1,5 @@
 {{- define "main" }}
   <div class="archive">
-
     {{- $type := .Type -}}
     {{- $.Scratch.Set "count" 1 -}}
       {{- range (.Site.RegularPages.GroupByDate "2006") -}}
@@ -16,8 +15,9 @@
             {{- range (where .Pages "Type" $type) -}}
               {{- if (ne .Params.hidden true) }}
                 <li class="archive-item">
-                  <time>{{- .Date | time.Format ":date_medium" -}}</time>
                   <a href="{{- .RelPermalink -}}">{{- .Title -}}</a>
+                  <hr class="hr-list">
+                  <time>{{- .Date | time.Format ":date_short" -}}</time>
                 </li>
               {{- end -}}
             {{- end }}
@@ -29,16 +29,17 @@
       <div class="archive-term">
         <h2>Filtering for #{{ .Title }}</h2>
         <small>
-          <a href="{{ "/blog" | relURL }}">Blog Archive</a> | <a href="{{ "/microblog" | relURL }}">Microblog Archive</a>
+          <a href="{{ "/blog" | relURL }}">Blog Archive</a> | <a href="{{ "/notes" | relURL }}">Notes Archive</a>
         </small>
         <ul>
           {{- range .Pages }}
-              <li>
-                <time>{{- .Date | time.Format ":date_medium" -}}</time>
+              <li class="archive-item">
                 {{ if .Title }} <a href="{{- .RelPermalink -}}">{{- .Title | plainify | safeHTML -}}</a>
                 {{- else }}
                 <a href="{{- .RelPermalink -}}"> {{ .Summary | plainify | safeHTML | truncate 65}}</a> 
                 {{- end}}
+                <hr class="hr-list">
+                <time>{{- .Date | time.Format ":date_short" -}}</time>
               </li>
           {{- end }}
         </ul>
