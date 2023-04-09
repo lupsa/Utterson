@@ -3,9 +3,9 @@
   <small>{{ .Site.Params.description}}</small>
 </h2>
 <nav class="masthead-nav">
-    <a href="{{ .Site.BaseURL | relURL }}">{{ i18n "menu_home" }}</a>
+    <a href="{{ .Site.BaseURL }}">{{ i18n "menu_home" }}</a>
   {{- range .Site.Menus.main }}
-    <a href="{{ .URL }}">{{ .Name }}</a>
+    <a href="{{ .URL | absURL }}">{{ .Name }}</a>
   {{- end -}}
   {{- with .Site.GetPage "/blog" }}
     <a href="{{ "/blog/" | absURL }}">Blog</a>
