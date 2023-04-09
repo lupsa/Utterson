@@ -48,7 +48,10 @@ dd {
 
 hr {
   position: relative;
-  margin: var(--spacer-2) 0;
+  margin-top: var(--spacer-2);
+  margin-bottom: var(--spacer-2);
+  margin-left: 0;
+  margin-right: 0;
   border: 0;
   border-top: 1px solid var(--border-color);
 }
