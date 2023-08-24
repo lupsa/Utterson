@@ -2,8 +2,6 @@
 
 Utterson is a minimal and clean [Hugo](https://gohugo.io) theme based on mdo's [Poole](https://demo.getpoole.com) code source and inspired by [bearblog.dev](https://bearblog.dev).
 
-### [Demo](https://mkozaq.com)
-
 ___
 
 ## Installation
